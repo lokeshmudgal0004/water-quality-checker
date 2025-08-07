@@ -111,7 +111,7 @@ plot_membership(temp, 'Temperature Membership')
 # In[11]:
 
 
-get_ipython().system('jupyter nbconvert --to script MF_and_Visualization.ipynb')
+
 
 
 # In[ ]:

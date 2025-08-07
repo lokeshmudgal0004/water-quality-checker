@@ -53,7 +53,16 @@ rule10 = ctrl.Rule(pH['Neutral'] & do['High'] & bod['High'] & nitrate['Moderate'
 
 
 # Create a fuzzy control system
-wqi_ctrl = ctrl.ControlSystem([rule1, rule2, rule3, rule4, rule5, rule6, rule7, rule8, rule9, rule10])
+# Catch-all rule to prevent system failure
+fallback_rule = ctrl.Rule(pH['Neutral'] | do['Medium'] | bod['Moderate'] | nitrate['Moderate'] | temp['Moderate'], wqi['Moderate'])
+
+# Add it to the system
+wqi_ctrl = ctrl.ControlSystem([
+    rule1, rule2, rule3, rule4, rule5,
+    rule6, rule7, rule8, rule9, rule10,
+    fallback_rule  # 👈 add here
+])
+
 wqi_simulation = ctrl.ControlSystemSimulation(wqi_ctrl)
 
 
@@ -78,7 +87,7 @@ plot_wqi()
 # In[8]:
 
 
-get_ipython().system('jupyter nbconvert --to script WaterQualitySystem.ipynb')
+
 
 
 # In[ ]:
