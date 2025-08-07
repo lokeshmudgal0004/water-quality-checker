@@ -1,5 +1,7 @@
 streamlit
 scikit-fuzzy
+scipy
 matplotlib
 numpy
 pandas
+
